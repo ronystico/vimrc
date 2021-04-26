@@ -1,33 +1,56 @@
-call plug#begin('~/.vim/plugged')
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'nanotech/jellybeans.vim'
-Plug 'mbbill/undotree'
-Plug 'vbe0201/vimdiscord'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ap/vim-css-color'
-Plug 'junegunn/goyo.vim'
+" Download vimplug if is not present
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
+" List plugins
+call plug#begin('~/.vim/plugged')
+" Theme
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+" Multi cursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Undo changes
+Plug 'mbbill/undotree'
+" Botnet
+Plug 'vbe0201/vimdiscord'
+" Coc and some plugins. In Ubuntu, without yarnpkg doesn't do anything
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-html', {'do': 'yarnpkg install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarnpkg install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarnpkg install --frozen-lockfile'}
+Plug 'marlonfan/coc-phpls', {'do': 'yarnpkg install --frozen-lockfile'}
+Plug 'fannheyward/coc-sql', {'do': 'yarnpkg install --frozen-lockfile'}
+" Show css colors inside vim
+Plug 'ap/vim-css-color'
+" file file file manager
+Plug 'preservim/nerdtree'
+" Load plugins
 call plug#end()
+
+" Open NERDTree
+set splitbelow 
+autocmd VimEnter * NERDTree
+" autocmd VimEnter * UndotreeToggle
+
+" Exit from NERDTree tab at vim start
+autocmd VimEnter * wincmd p
+" Without this, using :q will result with NERDTree as last tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Select coc suggest with <CR> key (enter) and format code
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " god i hate no-upstream distros
 set nocompatible
 
-" block arrows, the second must have (there is a bug with arrow up)
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-map <up> <nop>   
-
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-imap <up> <nop> 
-
 " colorscheme
-:colorscheme jellybeans
+syntax on " This is required for the colorscheme
+colorscheme purify
 
 " open undotree
-nnoremap <F5> :UndotreeToggle<CR>
+nnoremap <F3> :NERDTree<CR>
+nnoremap <F4> :UndotreeToggle<CR>
 
 " filetype detect
 :filetype on
