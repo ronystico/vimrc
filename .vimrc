@@ -1,7 +1,7 @@
 " make sure I have the vimplug
 " download vimplug if is not present
 if has('win32') || has('win64')
-! echo 'Windows, 20 useless gb. Download vimplug manually, NOW!'
+
 else
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -48,6 +48,14 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 " automatic things
+" GUI font
+if has("gui_running")
+if has("gui_gtk2")
+set guifont=FuraMono\ NF\ 12
+elseif has("gui_win32")
+set guifont=FuraMono_NF:h12
+endif
+endif
 " Open NERDTree
 autocmd VimEnter * NERDTree
 "" let g:NERDTreeNodeDelimiter = "\u00a0" ///////////////////////
