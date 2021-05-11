@@ -1,7 +1,7 @@
 " make sure I have the vimplug
 " download vimplug if is not present
 if has('win32') || has('win64')
-    " no windows
+    " windows is trash
 else
     let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
     if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -11,19 +11,20 @@ else
 endif
 
 " list and start plugins
-" List plugins
+" List plugins based on operating system
 if has('win32') || has('win64')
     call plug#begin('$HOME/vimfiles/plugged')
 else
     call plug#begin('~/.vim/plugged')
 endif
-" debelopersebas icons, you need nerdfonts, I use fura code nerd font (yes, fura)
+" icons, you need nerdfonts, I use fura code nerd font (yes, fura) (i wanna be
+" cool too)
 Plug 'ryanoasis/vim-devicons'
-" the colorscheme
+" the colorscheme (suggest another)
 Plug  'joshdick/onedark.vim'
 " Undo changes
 Plug 'mbbill/undotree'
-" Botnet
+" vim backdoor
 Plug 'vimsence/vimsence'
 " Coc and some plugins. In Ubuntu, without yarnpkg doesn't do anything
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,7 +59,6 @@ if has("gui_running")
 endif
 " Open NERDTree
 autocmd VimEnter * NERDTree
-"" let g:NERDTreeNodeDelimiter = "\u00a0" ///////////////////////
 " Exit from NERDTree tab at vim start
 autocmd VimEnter * wincmd p
 " Without this, using :q will result with NERDTree as last tab
@@ -66,11 +66,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Select coc suggest with <CR> key (enter) and format code
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" plugins needed things (I think the other ones are not here)
-" For debelopersebas icons
+" plugins needed things (The other ones are not here)
+" For icons (encoding)
 set encoding=UTF-8
 
-" colorscheme
+" for colorscheme (I like to copy paste code I don't know what is for)
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -87,7 +87,7 @@ if (empty($TMUX))
     endif
 endif
 colorscheme onedark
-" lightline
+" lightline (hmmm no idea)
 let g:lightline = {
             \ 'colorscheme': 'onedark',
             \ }
@@ -96,7 +96,7 @@ let g:lightline = {
 " mapping keys
 nnoremap <F1> :NERDTree<CR>
 nnoremap <F2> :UndotreeToggle<CR>
-" god i hate no-upstream distros
+" vi > vim
 set nocompatible
 " highlight syntax
 syntax on
@@ -121,3 +121,5 @@ set wrap
 set ruler
 " show mode
 set showmode
+" the most controvertial change. please open a bug report to discuss this.
+set mouse=a
