@@ -3,7 +3,9 @@
 yes
 
 ## Prerequisites
-* [yarnpkg](apt://yarnpkg) package in Ubuntu
+* `curl`
+* `git`
+* `yarnpkg` package in Ubuntu
 * [FuraMono NF](https://github.com/ryanoasis/nerd-fonts) font for GUI (gVim) **can be changed after you clone**
 
 Note: I was told in Arch Linux, `yarnpkg` is called `yarn` and `yarnpkg` works fine. There is no need to replace anything.
@@ -34,7 +36,9 @@ ln -s ~/vimrc/.vimrc ~/.vimrc
 
 **Run vim**
 
-You will be greeted with some warning/errors/bugs/explosions/wowowow but don't worry, I got you covered. You need to quit the warning/e... and write inside vim:
+After vim-plug is downloaded, you will be greeted with some warning/errors/bugs/explosions/wowowow but don't worry, I got you covered. You need to quit the warning/e... and restart vim
+
+You will be greeted with less errors, to quit all errors you need to install the plugins, so write inside vim:
 ```python
 :PlugInstall
 ```
