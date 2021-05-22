@@ -5,6 +5,7 @@ yes
 ## Prerequisites
 * `curl`
 * `git`
+* `silversearcher-ag`
 * `yarnpkg` package in Ubuntu
 * [FuraMono NF](https://github.com/ryanoasis/nerd-fonts) font for GUI (gVim) **can be changed after you clone**
 

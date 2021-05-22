@@ -33,6 +33,8 @@ Plug 'neoclide/coc-css', {'do': 'yarnpkg install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarnpkg install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarnpkg install --frozen-lockfile'}
 Plug 'fannheyward/coc-sql', {'do': 'yarnpkg install --frozen-lockfile'}
+" go to function declaration
+Plug 'pechorin/any-jump.vim'
 " Show css colors inside vim
 Plug 'ap/vim-css-color'
 " html like ninja
